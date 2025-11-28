@@ -1,3 +1,21 @@
+// Dynamic viewport height variable to handle mobile browser UI
+(() => {
+    const setViewportHeight = () => {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    let resizeTimeout;
+    const onResize = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(setViewportHeight, 150);
+    };
+
+    setViewportHeight();
+    window.addEventListener('resize', onResize);
+    window.addEventListener('orientationchange', onResize);
+})();
+
 // Email form handling with FormCarry
 const emailForm = document.getElementById('emailForm');
 const emailInput = document.getElementById('emailInput');

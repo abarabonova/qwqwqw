@@ -21,7 +21,8 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     overflow: hidden;
-    height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+    height: calc(var(--vh, 1vh) * 100);
     background: #FF4545;
     padding: 20px;
     margin: 0;
@@ -29,11 +30,12 @@ body {
 
 /* Sky Background */
 .sky-background {
-    height: calc(100vh - 40px);
+    height: calc((var(--vh, 1vh) * 100) - 40px);
+    min-height: calc((var(--vh, 1vh) * 100) - 40px);
     background: 
         url('sky-qw-back.png'),
         linear-gradient(180deg, #2E9DFF 0%, #8BC9FF 100%);
-    background-size: auto calc(100vh - 40px), 100% 100%;
+    background-size: cover, 100% 100%;
     background-position: center, center;
     background-repeat: no-repeat, no-repeat;
     position: relative;
@@ -46,6 +48,23 @@ body {
     background-color: rgba(255, 255, 255, 0.01);
     box-shadow: 0 3px 50px 3px #FFF inset;
     box-sizing: border-box;
+}
+
+.logo-wrapper {
+    position: absolute;
+    top: 28px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 6;
+    pointer-events: none;
+}
+
+.logo {
+    height: 56px;
+    width: auto;
+    pointer-events: auto;
 }
 
 /* Widgets Container */
@@ -121,6 +140,13 @@ body {
     z-index: 5;
     pointer-events: auto;
     display: block;
+}
+
+.title-picture {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    pointer-events: none;
 }
 
 /* Form Label */
@@ -309,19 +335,17 @@ text-decoration: underline;
 @media (max-width: 1023px) {
     body {
         padding: 8px;
-        overflow-y: auto;
-        overflow-x: hidden;
-        height: auto;
-        min-height: 100vh;
+        overflow: hidden;
+        height: calc(var(--vh, 1vh) * 100);
+        min-height: calc(var(--vh, 1vh) * 100);
     }
 
     .sky-background {
-        min-height: calc(100vh - 16px);
+        min-height: calc((var(--vh, 1vh) * 100) - 16px);
         height: auto;
-        background-size: auto calc(100vh - 16px), 100% 100%;
+        background-size: cover, 100% 100%;
         padding: 0;
-        overflow: visible;
-        padding-bottom: 100px; /* Дополнительный отступ снизу для скролла */
+        overflow: hidden;
     }
 
     .container {
@@ -332,10 +356,9 @@ text-decoration: underline;
 
     .content-wrapper {
         padding: 10px 10px 28px 10px;
-        min-height: calc(100vh - 16px);
-        height: auto;
+        min-height: calc((var(--vh, 1vh) * 100) - 16px);
+        height: 100%;
         position: relative;
-        padding-bottom: 100px; /* Дополнительный отступ для скролла */
     }
 
     .content-wrapper > .title-wrapper {
@@ -343,7 +366,7 @@ text-decoration: underline;
         top: 0;
         left: 0;
         right: 0;
-        height: calc(100vh - 16px);
+        height: calc((var(--vh, 1vh) * 100) - 16px);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -379,6 +402,14 @@ text-decoration: underline;
 
     .social-links {
         margin-top: 20px;
+    }
+
+    .logo-wrapper {
+        top: 20px;
+    }
+
+    .logo {
+        height: 48px;
     }
 }
 
@@ -498,5 +529,13 @@ text-decoration: underline;
     .social-links {
         gap: 28px;
         font-size: 0.85rem;
+    }
+
+    .logo-wrapper {
+        top: 16px;
+    }
+
+    .logo {
+        height: 42px;
     }
 }
